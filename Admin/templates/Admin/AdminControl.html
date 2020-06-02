@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Control</title>
+</head>
+<body>
+
+<ul>
+        <li>
+            <h4>Import CSV File</h4>
+            <form action="{% url 'ImportCSV' %}" method="get">
+                <div class="container">
+                  <label>Enter File Path</label>
+                  <input type="text" placeholder="File Path" name="import" method="get">
+              
+                  <button type="submit" >Import</button>
+                </div>
+              </form>
+        </li>
+        <li><a href="{% url 'disp_games' %}" >Display All Games</a></li>
+</ul>
+
+
+</body>
+</html>

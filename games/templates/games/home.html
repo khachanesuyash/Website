@@ -1,0 +1,30 @@
+{% extends 'games/base.html' %}
+{% block title %}Home Page{% endblock %}
+{% block body %}
+{% load static %}
+<style>
+/* #links ul{
+  list-style: none;
+}
+#links li{
+  display: inline;
+} */
+
+</style>
+
+
+<img src = "{% static "games/image/Home.jpg" %}"
+     height="600" width="100%"/>
+
+<div id = "links">
+        <ul>
+                <li><a href="{% url 'home_plot' %}"><h3>Maximum Global Sales in a Year</h3></a></li>
+                <li><a href="{% url 'home_plot2' %}"><h3>Total Number of Sales Country-wise</h3></a></li>
+                <li><a href="{% url 'home_plot3' %}"><h3>Count of Games per Genre</h3></a></li>
+                <li><a href="{% url 'home_plot4' %}"><h3>Global Sales in a Genre</h3></a></li>
+                <li><a href="{% url 'home_plot5' %}"><h3>Count of Games per Platform</h3></a></li>
+              </ul>
+</div>
+<br>
+<br><br>
+{% endblock %}

@@ -1,0 +1,13 @@
+
+
+<form method ='GET' action="{% url 'updated' %}">
+    Game name :<input type="text" placeholder="{{oldName}}" name="newName"><br>
+              
+    <input align = "center" type="submit" name = 'button'  value="Update">
+    
+  </form>
+  
+  <form method ='GET' action="{% url 'deleted' %}">
+  <input type="submit" name="delete" value = 'Delete' >
+
+</form>

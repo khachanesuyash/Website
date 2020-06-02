@@ -1,0 +1,5 @@
+{% for games in all_games %}
+    <ul>
+        <li><a href="up_del/?name={{ games }}" method="GET" name = {{games }}>{{ games }}</a></li>
+    </ul>
+{% endfor %}

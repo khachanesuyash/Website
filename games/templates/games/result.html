@@ -1,0 +1,164 @@
+{% extends 'games/base.html' %}
+{% block title %}Results{% endblock %}
+{% load staticfiles %}
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+{% block body %}
+<style>
+table {
+<!--  border-collapse: collapse;-->
+  width: 100%;
+  margin: 0 auto;
+}
+
+table.center {
+    margin-left: 0px;
+    margin-right: auto;
+}
+
+table, th, td {
+  padding: 17px;
+  text-align: center;
+  border: 1px solid black;
+
+}
+
+p {
+        font-family: "Satisfy";
+         font-size: 50px;
+         font-weight: bold;
+     }
+
+html, body {
+    width: 100%;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.floatLeft { width: 50%; float: left; }
+.floatRight {width: 50%; float: right; }
+.container { overflow: hidden; }
+body {
+	background-image: url("{% static "games/image/bcgrnd.jpg"%} ");
+        background-repeat:no-repeat;
+       background-size:cover;
+       
+  background-position: center;
+} 
+</style>
+<!-- <body style = 'background-image : url({% static "games/image/images.jpg"%});';
+               height="662" width="100%"> -->
+    
+
+{% for value in values %}
+<div class="container-fluid">
+
+    <div class="row">
+
+        <!-- Left Album Info -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+<!--                    {% for value in values %}-->
+                        {% if value.img == 'None' %}
+                            <img src="{% static 'games/image/download1.webp' %}" class="img-responsive">
+                        {% else %}
+                            <img src="{% static value.img %}" class="img-responsive">
+                        {% endif %}
+                    <h2>{{value.name}}<br><small>{{ value.genre }}</small></h2>
+<!--                    {% endfor %}-->
+                </div>
+            </div>
+        </div>
+
+         <!-- Right Song Info -->
+        <div class="col-sm-8 col-md-9">
+           <div class="panel panel-default">
+                <div class="panel-body">
+
+                      <h3 style="font-family:verdana;font-size:160%;"><b><i> Game Info... </i></b></h3>
+                      {% load staticfiles %}
+<!--                            {% for value in values%}-->
+                                {% if value.img != 'None' %}
+                                   <p><iframe id ="frame" src="{% static value.info %}" frameborder="0" height="308"
+                                       width="95%"></iframe></p>
+                                {% else %}
+                                    <p><iframe id ="frame" src="{% static 'games/text/info.html' %}" frameborder="0" height="200"
+                                       width="95%"></iframe></p>
+                                {% endif %}
+                                        <script>
+                                        var frame = document.getElementById('frame');
+                                            frame.onload = function () {
+                                                var body = frame.contentWindow.document.querySelector('body');
+                                                body.style.color = 'black';
+                                                body.style.fontSize = '20px';
+                                                body.style.lineHeight = '20px';
+                                            };
+                                        </script>
+<!--                            {% endfor %}-->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container">
+<div style="overflow-x:auto;" class="floatLeft">
+    <h2 align = 'center' style="color:white;">Game Details </h2>
+    <table>
+<!--        {% for value in values %}-->
+        <tr>
+            <th>Name</th>
+            <th>Platform</th>
+            <th>Year</th>
+            <th>Genre</th>
+        </tr>
+        <tr>
+            <td><h4>{{ value.name }}</h4></td>
+            <td><h4>{{ value.platform }}</h4></td>
+            <td><h4>{{ value.year }}</h4></td>
+            <td><h4>{{ value.genre }}</h4></td>
+        </tr>
+<!--        {% endfor %}-->
+    </table>
+</div>
+    <h2 align = 'center' style="color:white;">Sales Data(in Millions)</h2>
+    <div style="overflow-x:auto;" class="floatRight">
+    <table>
+<!--        {% for value in values %}-->
+        <tr>
+            <th>America</th>
+            <th>Europe</th>
+            <th>Japan</th>
+            <th>Other</th>
+            <th>Global</th>
+        </tr>
+        <tr>
+            <td><h4>{{ value.NA_Sales }}</h4></td>
+            <td><h4>{{ value.EU_Sales }}</h4></td>
+            <td><h4>{{ value.JP_Sales }}</h4></td>
+            <td><h4>{{ value.Other_Sales }}</h4></td>
+            <td><h4>{{ value.Global_Sales }}</h4></td>
+        </tr>
+
+<!--        {% endfor %}-->
+    </table>
+    </div>
+</div>
+<br><br>
+
+<div style="text-align:center">
+    <a href = "/graph/?name={{ value.name }}"
+        target="_blank" method="GET" name={{value.name}}><h3> Plot the Graphs </h3></a>
+</div>
+{% endfor %}
+<br><br><br><br>
+<!-- </body> -->
+{% endblock %}
